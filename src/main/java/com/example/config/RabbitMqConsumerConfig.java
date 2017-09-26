@@ -20,13 +20,13 @@ public class RabbitMqConsumerConfig {
 	private RabbitMqConnectionConfig rabbitMQConnectionConfig;
 
 	@Bean
-	public Queue simpleQueue() {
-		return new Queue(SIMPLE_MESSAGE_QUEUE, true, false, false);
+	public MessageConverter jsonMessageConverter() {
+		return new JsonMessageConverter();
 	}
 
 	@Bean
-	public MessageConverter jsonMessageConverter() {
-		return new JsonMessageConverter();
+	public Queue simpleQueue() {
+		return new Queue(SIMPLE_MESSAGE_QUEUE, true, false, false);
 	}
 
 	@Bean

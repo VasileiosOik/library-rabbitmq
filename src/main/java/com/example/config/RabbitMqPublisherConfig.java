@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMqPublisherConfig {
 
+	private static final String SIMPLE_MESSAGE_QUEUE = "simple.queue.bill";
+
 	@Autowired
 	private RabbitMqConnectionConfig rabbitMQConnectionConfig;
-
-	private static final String SIMPLE_MESSAGE_QUEUE = "simple.queue.bill";
 
 	@Bean
 	public MessageConverter jsonMessageConverter() {

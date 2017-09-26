@@ -23,23 +23,17 @@ public class MessageRabbitmqTest {
 
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
-	
-	// @Autowired
-	// private MessagePublisher messagePublisher;
-	//
-	// @Autowired
-	// private MessageConsumer messageConsumer;
 
 	@Test
-	public void test() throws Exception {
+	public void test1() throws Exception {
 
 		log.info("Sending new custom message...");
-		// producer or sender
-		// messagePublisher.send(new CustomMessage(1, "Bill"));
 		rabbitTemplate.convertAndSend(new CustomMessage(1, "Bill"));
-		
-
 		log.info("Is listener returned ::: " + rabbitTemplate.isReturnListener());
+
+		log.info("Retrieving the custom message...");
+		Object customMessage = rabbitTemplate.receiveAndConvert();
+		log.info("the message is: {}", customMessage);
 
 	}
 
