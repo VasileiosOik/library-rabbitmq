@@ -4,6 +4,15 @@ public class CustomMessage {
 
 	private int number;
 	private String name;
+	private String event;
+
+	public String getEvent() {
+		return event;
+	}
+
+	public void setEvent(String event) {
+		this.event = event;
+	}
 
 	public int getNumber() {
 		return number;
@@ -25,21 +34,16 @@ public class CustomMessage {
 
 	}
 
-	public CustomMessage(int number, String name) {
+	public CustomMessage(int number, String name, String event) {
 		super();
 		this.number = number;
 		this.name = name;
+		this.event = event;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("CustomMessage [number=");
-		builder.append(number);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append("]");
-		return builder.toString();
+		return "CustomMessage [number=" + number + ", name=" + name + ", event=" + event + "]";
 	}
 
 }

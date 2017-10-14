@@ -14,5 +14,4 @@ public class RabbitMqConnectionConfig {
 		connectionFactory.setPassword("guest");
 		return connectionFactory;
 	}
-
 }

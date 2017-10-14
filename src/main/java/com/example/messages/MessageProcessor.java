@@ -1,9 +1,9 @@
 package com.example.messages;
 
-import java.util.List;
 
+@FunctionalInterface
 public interface MessageProcessor {
 
-	List<CustomMessage> processRequest(CustomMessage message);
+	CustomMessage processRequest(CustomMessage message);
 
 }

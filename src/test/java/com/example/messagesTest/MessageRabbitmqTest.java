@@ -28,13 +28,7 @@ public class MessageRabbitmqTest {
 	public void test1() throws Exception {
 
 		log.info("Sending new custom message...");
-		rabbitTemplate.convertAndSend(new CustomMessage(1, "Bill"));
+		rabbitTemplate.convertAndSend(new CustomMessage(1, "Bill","as.request.received"));
 		log.info("Is listener returned ::: " + rabbitTemplate.isReturnListener());
-
-		log.info("Retrieving the custom message...");
-		Object customMessage = rabbitTemplate.receiveAndConvert();
-		log.info("the message is: {}", customMessage);
-
 	}
-
 }
