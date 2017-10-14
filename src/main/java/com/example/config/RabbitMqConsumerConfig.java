@@ -18,11 +18,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 
 @EnableRabbit
 @Configuration
-@PropertySources({@PropertySource("classpath:application.properties")})
+@PropertySource("classpath:application.properties")
 public class RabbitMqConsumerConfig {
 
 	private static final String SIMPLE_MESSAGE_QUEUE = "simple.queue.bill";
@@ -50,9 +49,9 @@ public class RabbitMqConsumerConfig {
 	public List<Binding> consumerBinding(TopicExchange messageExchange, Queue consumerQueue){
 		List<Binding> bindings=new ArrayList<>();
 		LOG.debug("[{}], [{}], [{}]", messageExchange, consumerQueue, bindingKeys);
-		bindingKeys.forEach(key->{
-			bindings.add(BindingBuilder.bind(consumerQueue).to(messageExchange).with(key));
-		});
+		bindingKeys.forEach(key->
+			bindings.add(BindingBuilder.bind(consumerQueue).to(messageExchange).with(key))
+		);
 		
 		return bindings;
 		
