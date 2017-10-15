@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.configuration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,11 +36,10 @@ public class RabbitMqPublisherConfig {
 		LOG.debug("Creating Rabbit template with routing key [{}]", routingKey);
 		RabbitTemplate template = new RabbitTemplate(rabbitMQConnectionConfig.connectionFactory());
 		// The routing key is set to the name of the queue by the broker for the default
-		// exchange.
+		// exchange but in my case i use an actual routing key
 		template.setRoutingKey(routingKey);
-
+		//name of the exchange
 		template.setExchange(exchangeName);
-
 		// Where we will synchronously receive messages from
 		template.setMessageConverter(jsonMessageConverter());
 		return template;

@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.messages.CustomMessage;
-import com.example.messages.MessageCreator;
-import com.example.messages.MessageProcessor;
+import com.example.domain.CustomMessage;
+import com.example.messagehandlers.MessageCreator;
+import com.example.messagehandlers.MessageProcessor;
 
 @Component
 public class SendingMessageProcessor implements MessageProcessor {

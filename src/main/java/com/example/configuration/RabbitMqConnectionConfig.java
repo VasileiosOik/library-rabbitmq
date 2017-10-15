@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.configuration;
 
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
