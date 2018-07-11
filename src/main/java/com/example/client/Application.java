@@ -8,9 +8,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 @ComponentScan("com.example.*")
-public class CompanyRabbitMqApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CompanyRabbitMqApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }
