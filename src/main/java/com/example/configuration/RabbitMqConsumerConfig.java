@@ -24,8 +24,6 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application.properties")
 public class RabbitMqConsumerConfig {
 
-	private static final String SIMPLE_MESSAGE_QUEUE = "simple.queue.bill";
-	
 	private static final Logger LOG=LoggerFactory.getLogger(RabbitMqConsumerConfig.class);
 
 	@Autowired
@@ -34,6 +32,9 @@ public class RabbitMqConsumerConfig {
 	@Value("${consuming.event}")
 	private List<String> bindingKeys;
 
+    @Value("${rabbitmq.queue.name}")
+    private String simpleQueue;
+
 	@Bean
 	public MessageConverter jsonMessageConverter() {
 		return new Jackson2JsonMessageConverter();
@@ -41,20 +42,18 @@ public class RabbitMqConsumerConfig {
 
 	@Bean
 	public Queue consumerQueue() {
-		LOG.debug("The application will consume messages from this queue [{}]", SIMPLE_MESSAGE_QUEUE);
-		return new Queue(SIMPLE_MESSAGE_QUEUE, true, false, false);
+		LOG.debug("The application will consume messages from this queue [{}]", simpleQueue);
+		return new Queue(simpleQueue, true, false, false);
 	}
 	
 	@Bean
 	public List<Binding> consumerBinding(TopicExchange messageExchange, Queue consumerQueue){
 		List<Binding> bindings=new ArrayList<>();
-		LOG.debug("[{}], [{}], [{}]", messageExchange, consumerQueue, bindingKeys);
+		LOG.debug("Here are the Queue details: [{}], [{}], [{}]", messageExchange, consumerQueue, bindingKeys);
 		bindingKeys.forEach(key->
 			bindings.add(BindingBuilder.bind(consumerQueue).to(messageExchange).with(key))
 		);
-		
 		return bindings;
-		
 	}
 
 	@Bean

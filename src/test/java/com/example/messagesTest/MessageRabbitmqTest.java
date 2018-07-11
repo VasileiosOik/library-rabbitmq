@@ -11,12 +11,12 @@ package com.example.messagesTest;
 //
 //import com.example.configuration.RabbitMqConnectionConfig;
 //import com.example.configuration.RabbitMqConsumerConfig;
-//import com.example.configuration.RabbitMqPublisherConfig;
+//import com.example.configuration.RabbitMqProducerConfig;
 //import com.example.domain.CustomMessage;
 
 //@RunWith(SpringRunner.class)
 //@SpringBootTest(classes = { RabbitMqConnectionConfig.class, RabbitMqConsumerConfig.class,
-//		RabbitMqPublisherConfig.class })
+//		RabbitMqProducerConfig.class })
 //public class MessageRabbitmqTest {
 //
 //	private final Logger log = LoggerFactory.getLogger(MessageRabbitmqTest.class);

@@ -25,7 +25,7 @@ public class SendingMessageProcessor implements MessageProcessor {
 
 	private CustomMessage addedMessage(CustomMessage message) {
 		LOG.debug("A message has been added to the queue");
-		return messageCreator.addedMessage(message);
+		return messageCreator.addMessage(message);
 		
 	}
 }

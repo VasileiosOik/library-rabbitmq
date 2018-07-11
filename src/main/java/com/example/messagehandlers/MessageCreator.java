@@ -14,49 +14,47 @@ public class MessageCreator {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MessageCreator.class);
 
-	public CustomMessage errorMessage(int age) {
+	public CustomMessage errorMessage() {
 		CustomMessage message = constructErrorMessage();
-		LOG.debug("Inside the SendingMessageProcessor.class---->The error message added to the queue is: [{}]",
-				message);
+		LOG.debug("Inside the SendingMessageProcessor.class---->The error message added to the queue is: [{}]", message);
 		return message;
 	}
 
 	private CustomMessage constructErrorMessage() {
-		
 		return null;
 	}
 
-	public CustomMessage addedMessage(CustomMessage message) {
-		CustomMessage customMessage = constructNewPersonDetailsMessage();
+	public CustomMessage addMessage(CustomMessage message) {
+	//	CustomMessage customMessage = constructNewPersonDetailsMessage();
 		LOG.debug("Inside the SendingMessageProcessor.class---->The message added to the queue is: [{}]",
-				customMessage);
-		return customMessage;
-	}
-
-	private CustomMessage constructNewPersonDetailsMessage() {
-		CustomMessage message = new CustomMessage();
-		message.setHeader(getHeader());
-		message.setPayload(getPayload());
+				message);
 		return message;
 	}
 
-	private Payload getPayload() {
-		return new Payload(getPerson());
-		
-	}
-
-	private Person getPerson() {
-		Person person=new Person();
-		person.setAge(29);
-		person.setName("Bill");
-		return person;
-	}
-
-	private Header getHeader() {
-		Header header=new Header();
-		header.setMessageId("2");
-		header.setEvent("as.changed");
-		return header;
-	}
+//	private CustomMessage constructNewPersonDetailsMessage() {
+//		CustomMessage message = new CustomMessage();
+//		message.setHeader(getHeader());
+//		message.setPayload(getPayload());
+//		return message;
+//	}
+//
+//	private Payload getPayload() {
+//		return new Payload(getPerson());
+//
+//	}
+//
+//	private Person getPerson() {
+//		Person person=new Person();
+//		person.setAge(29);
+//		person.setName("Bill");
+//		return person;
+//	}
+//
+//	private Header getHeader() {
+//		Header header=new Header();
+//		header.setMessageId("2");
+//		header.setEvent("as.request.received");
+//		return header;
+//	}
 
 }

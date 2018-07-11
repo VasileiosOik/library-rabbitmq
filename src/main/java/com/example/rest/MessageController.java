@@ -22,7 +22,7 @@ public class MessageController {
 
 	@PostMapping(value = "/message/sending", consumes = "application/json")
 	public ResponseEntity<CustomMessage> maintainMessage(@RequestBody CustomMessage message) {
-		log.debug("The message that came to the controller is: [{}]", message.toString());
+		log.debug("The message that came to the controller is: [{}]", message);
 		if (message.getPayload().getPerson().getName().equals("Bill")) {
 			log.debug("I am going to publish a new message to the queue");
 			messagePublisher.sendMessage(message);

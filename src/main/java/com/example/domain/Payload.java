@@ -1,11 +1,13 @@
 package com.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown=true)
+//@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 public class Payload {
 	
 	private Person person;
