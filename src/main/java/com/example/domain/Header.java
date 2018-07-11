@@ -15,8 +15,6 @@ public class Header {
 
 	private String messageId;
 
-	private Map<String, String> keys = new HashMap<>();
-
 	public String getEvent() {
 		return event;
 	}
@@ -31,18 +29,6 @@ public class Header {
 
 	public void setMessageId(String messageId) {
 		this.messageId = messageId;
-	}
-
-	public Map<String, String> getKeys() {
-		return keys;
-	}
-
-	public void setKeys(Map<String, String> keys) {
-		this.keys = keys;
-	}
-	
-	public void addkeys(String key, String value) {
-		this.keys.put(key, value);
 	}
 
 	@Override
