@@ -51,7 +51,7 @@ public class RabbitMqConnectionConfig {
     }
 
     @Bean
-    public TopicExchange rabbitExcahnge() {
+    public TopicExchange rabbitExchange() {
         return new TopicExchange(exchangeName);
     }
 

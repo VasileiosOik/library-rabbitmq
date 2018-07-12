@@ -4,6 +4,7 @@ import com.example.domain.CustomMessage;
 import com.example.domain.Header;
 import com.example.domain.Payload;
 import com.example.domain.Person;
+import com.example.processor.MessageProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -29,6 +30,11 @@ public class MessageDefaultHandler {
 	private String errorEvent;
 
 	@RabbitListener(containerFactory = "listenerContainer", queues = "simple.queue.bill")
+//    @RabbitListener(bindings = @QueueBinding(
+//            value = @Queue(value = "simple.queue.bill"),
+//            exchange = @Exchange(value = "bill.exchange"),
+//            key = "as.request.received")
+//    )
 	public void onMessage(CustomMessage message) {
 		log.debug("Inside the Message default handler class---->The message which consumed is: {}", message);
 

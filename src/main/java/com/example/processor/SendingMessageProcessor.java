@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import com.example.domain.CustomMessage;
 import com.example.messagehandlers.MessageCreator;
-import com.example.messagehandlers.MessageProcessor;
 
 @Component
 public class SendingMessageProcessor implements MessageProcessor {
