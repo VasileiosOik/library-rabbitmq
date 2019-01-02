@@ -20,7 +20,7 @@ public class RabbitMqConnectionConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(RabbitMqConnectionConfig.class);
 
-    @Value("${rabbitmq.exchange.name}")
+    @Value("${spring.rabbitmq.template.exchange}")
     private String exchangeName;
 
     @Value("${spring.rabbitmq.host}")

@@ -29,8 +29,8 @@ public class RabbitMqConsumerConfig {
     @Value("${ext.received.event}")
     private List<String> bindingKeys;
 
-    @Value("${rabbitmq.queue.name}")
-    private String simpleQueue;
+    @Value("${*.queue.name}")
+    private String nameQueue;
 
     @Autowired
     public RabbitMqConsumerConfig(RabbitMqConnectionConfig rabbitMQConnectionConfig) {
@@ -44,8 +44,8 @@ public class RabbitMqConsumerConfig {
 
     @Bean
     public Queue consumerQueue() {
-        LOG.debug("The application will consume messages from this queue [{}]", simpleQueue);
-        return new Queue(simpleQueue, true, false, false);
+        LOG.debug("The application will consume messages from this queue [{}]", nameQueue);
+        return new Queue(nameQueue, true, false, false);
     }
 
     @Bean
