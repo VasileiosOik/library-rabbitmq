@@ -7,7 +7,6 @@ import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,20 +25,19 @@ public class RabbitMqConsumerConfig {
 
     private final RabbitMqConnectionConfig rabbitMQConnectionConfig;
 
+    private final MessageConverter jsonMessageConverter;
+
     @Value("${ext.received.event}")
     private List<String> bindingKeys;
 
     @Value("${company.queue.name}")
     private String nameQueue;
 
-    @Autowired
-    public RabbitMqConsumerConfig(RabbitMqConnectionConfig rabbitMQConnectionConfig) {
-        this.rabbitMQConnectionConfig = rabbitMQConnectionConfig;
-    }
 
-    @Bean
-    public MessageConverter jsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
+    @Autowired
+    public RabbitMqConsumerConfig(RabbitMqConnectionConfig rabbitMQConnectionConfig, MessageConverter jsonMessageConverter) {
+        this.rabbitMQConnectionConfig = rabbitMQConnectionConfig;
+        this.jsonMessageConverter = jsonMessageConverter;
     }
 
     @Bean
@@ -62,7 +60,7 @@ public class RabbitMqConsumerConfig {
     public SimpleRabbitListenerContainerFactory listenerContainer() {
         SimpleRabbitListenerContainerFactory listenerContainer = new SimpleRabbitListenerContainerFactory();
         listenerContainer.setConnectionFactory(rabbitMQConnectionConfig.connectionFactory());
-        listenerContainer.setMessageConverter(jsonMessageConverter());
+        listenerContainer.setMessageConverter(jsonMessageConverter);
 
         listenerContainer.setPrefetchCount(1);
         listenerContainer.setConcurrentConsumers(5);

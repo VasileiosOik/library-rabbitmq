@@ -4,10 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
@@ -22,15 +20,13 @@ public class RabbitMqProducerConfig {
 
     private final TopicExchange topicExchange;
 
+    private final MessageConverter jsonMessageConverter;
+
     @Autowired
-    public RabbitMqProducerConfig(RabbitMqConnectionConfig rabbitMQConnectionConfig, TopicExchange rabbitExchange) {
+    public RabbitMqProducerConfig(RabbitMqConnectionConfig rabbitMQConnectionConfig, TopicExchange rabbitExchange, MessageConverter jsonMessageConverter) {
         this.rabbitMQConnectionConfig = rabbitMQConnectionConfig;
         this.topicExchange = rabbitExchange;
-    }
-
-    @Bean
-    public MessageConverter jsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
+        this.jsonMessageConverter = jsonMessageConverter;
     }
 
 
@@ -43,7 +39,7 @@ public class RabbitMqProducerConfig {
         LOG.debug("Exchange name is: {}", topicExchange.getName());
         template.setExchange(topicExchange.getName());
 
-        template.setMessageConverter(jsonMessageConverter());
+        template.setMessageConverter(jsonMessageConverter);
         return template;
     }
 }

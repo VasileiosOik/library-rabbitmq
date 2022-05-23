@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+
 
 @Component
 public class MessagePublisher<T> {
@@ -26,7 +26,7 @@ public class MessagePublisher<T> {
         LOG.debug("MessagePublisher----->Publishing message to the queue: [{}]", message);
         RabbitTemplate rabbitTemplate = getRabbitTemplate(message);
         rabbitTemplate.convertAndSend(message, messageDTO -> {
-            messageDTO.getMessageProperties().setContentType(MediaType.APPLICATION_JSON_VALUE);
+            messageDTO.getMessageProperties().setContentType("application/json");
             return messageDTO;
         });
     }
